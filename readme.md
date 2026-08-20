@@ -1,18 +1,18 @@
 # Agents (Weather)
 
-A fully local, voice-activated AI agent system — starting with weather, growing over time. No cloud AI subscriptions, no ongoing API costs. Say "Hey Jarvis," ask for a city, and get a natural-sounding spoken weather report generated entirely on your own machine.
+A fully local, voice-activated AI agent system starting with weather, growing over time. No cloud AI subscriptions, no ongoing API costs. Say "Hey Jarvis," ask for a city, and get a natural-sounding spoken weather report generated entirely on your own machine.
 
-This is agent #1 of a larger system Robby and Ani are building from scratch as a hands-on learning project. The plan is for this to grow into a real multi-agent setup — more specialized agents (news, finance, and others) are coming, all sharing the same local infrastructure this weather agent already runs on.
+This is agent #1 of a larger system Robby and Ani are building from scratch as a hands-on learning project. The plan is for this to grow into a real multi-agent setup more specialized agents (news, finance, and others) are coming, all sharing the same local infrastructure this weather agent already runs on.
 
 ## What it does
 
-Say "Hey Jarvis" and the agent starts listening. Tell it a city, either by voice or by typing, and it fetches live weather data, hands it to a locally-run AI model to write up a natural, enthusiastic report, and reads it back to you out loud.
+Say "Hey Jarvis" and the agent starts listening. Tell it a city, either by voice or by typing, and it fetches live weather data, hands it to a locally run AI model to write up a natural, enthusiastic report, and reads it back to you out loud.
 
-A few things worth knowing about how it behaves: if you ask about somewhere ambiguous like "Springfield," it checks population data first — if one match is clearly the most likely (like Tokyo), it just goes with that instead of asking. If it's a genuine toss-up between similarly-sized cities, it'll ask you to pick, and you can answer that by voice too. If the microphone ever struggles to understand you after a few tries, it falls back to letting you type instead, since voice input isn't accessible to everyone.
+A few things worth knowing about how it behaves: if you ask about somewhere ambiguous like "Springfield," it checks population data first, if one match is clearly the most likely (like Tokyo), it just goes with that instead of asking. If it's a genuine toss-up between similarly-sized cities, it'll ask you to pick, and you can answer that by voice too. If the microphone ever struggles to understand you after a few tries, it falls back to letting you type instead, since voice input isn't accessible to everyone.
 
 The AI narration runs through Ollama using `llama3.2`, entirely offline, with a prompt that's been tuned over several rounds to sound like an actual person talking rather than a script being read aloud. The voice itself uses `edge-tts`, which sounds noticeably more natural than typical robotic text-to-speech.
 
-Once it finishes giving you a report, it goes right back to listening for the wake word — it's meant to run continuously in the background, not be started fresh each time.
+Once it finishes giving you a report, it goes right back to listening for the wake word it's meant to run continuously in the background, not be started fresh each time.
 
 ## Folder structure
 
@@ -76,4 +76,4 @@ The weather agent works end to end, but it's still just one agent answering to a
 
 ## Built by
 
-Robby & Ani — learning AI development hands-on, one bug at a time. Follow along as this grows from one agent into a full system.
+Robby Deffo  & Ani harutyunyan — learning AI development hands-on, one bug at a time. Follow along as this grows from one agent into a full system.
