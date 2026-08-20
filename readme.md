@@ -1,19 +1,20 @@
-# 🌤️ Agents (Weather)
+# Agents (Weather)
 
 A fully local, voice-activated AI agent system — starting with weather, growing over time. No cloud AI subscriptions, no ongoing API costs. Say "Hey Jarvis," ask for a city, and get a natural-sounding spoken weather report generated entirely on your own machine.
 
-This is agent #1 of a larger multi-agent system being built from scratch as a hands-on learning project by Robby and Ani.
+This is agent #1 of a larger system Robby and Ani are building from scratch as a hands-on learning project. The plan is for this to grow into a real multi-agent setup — more specialized agents (news, finance, and others) are coming, all sharing the same local infrastructure this weather agent already runs on.
 
-## Features
+## What it does
 
-- 🎙️ **Wake word activation** — hands-free, always listening (currently "Hey Jarvis," a custom "Hey Lisa" wake word is planned)
-- 🗣️ **Voice input, with a typed fallback** — speak your answer; after 3 failed attempts, it gracefully offers to let you type instead (built with accessibility in mind — voice isn't accessible to everyone)
-- 🌍 **Smart city disambiguation** — automatically picks the most likely match by population (e.g. "Tokyo" just works, no menu), and only asks when it's a genuine toss-up between similarly-sized cities — up to 3 options, answerable by voice or typed number
-- 🧠 **Local AI narration** — [Ollama](https://ollama.com) running `llama3.2` turns raw weather data into a natural, enthusiastic, occasionally funny spoken report — entirely offline, prompt-tuned over several iterations for genuinely conversational tone
-- 🔊 **Natural voice output** — `edge-tts` neural voices, far more human-sounding than standard robotic TTS
-- 🔁 **Runs continuously** — a real standing app: after each report, it goes back to listening for the wake word rather than exiting
+Say "Hey Jarvis" and the agent starts listening. Tell it a city, either by voice or by typing, and it fetches live weather data, hands it to a locally-run AI model to write up a natural, enthusiastic report, and reads it back to you out loud.
 
-## Folder Structure
+A few things worth knowing about how it behaves: if you ask about somewhere ambiguous like "Springfield," it checks population data first — if one match is clearly the most likely (like Tokyo), it just goes with that instead of asking. If it's a genuine toss-up between similarly-sized cities, it'll ask you to pick, and you can answer that by voice too. If the microphone ever struggles to understand you after a few tries, it falls back to letting you type instead, since voice input isn't accessible to everyone.
+
+The AI narration runs through Ollama using `llama3.2`, entirely offline, with a prompt that's been tuned over several rounds to sound like an actual person talking rather than a script being read aloud. The voice itself uses `edge-tts`, which sounds noticeably more natural than typical robotic text-to-speech.
+
+Once it finishes giving you a report, it goes right back to listening for the wake word — it's meant to run continuously in the background, not be started fresh each time.
+
+## Folder structure
 
 ```
 weather_Agent/
@@ -28,9 +29,9 @@ weather_Agent/
     └── weather_agent.py            # Weather logic, wrapped in a run() function
 ```
 
-As more agents are added (news, finance, etc.), each will get its own file inside `agents/`, all sharing the same `speech.py` and `listener.py` tools.
+`speech.py` and `listener.py` sit outside the `agents/` folder on purpose — they're shared tools, not specific to weather. As new agents get added, each one gets its own file inside `agents/`, but they'll all reuse this same voice input/output plumbing rather than duplicating it.
 
-## Tech Stack
+## Tech stack
 
 | Purpose | Tool | Why |
 |---|---|---|
@@ -67,17 +68,12 @@ As more agents are added (news, finance, etc.), each will get its own file insid
    ```
    python fetcher.py
    ```
-6. Say **"Hey Jarvis"**, then say or type a city name.
+6. Say "Hey Jarvis," then say or type a city name.
 
-## Roadmap
+## What's next
 
-- [ ] Train a custom "Hey Lisa" wake word (via synthetic data generation, once more agents exist)
-- [ ] Add a second agent (news, finance, etc.) and build real intent-based routing between agents
-- [ ] Desktop GUI — a visual app window instead of the terminal
-- [ ] A senior orchestrator agent to route between all specialized agents
-- [ ] Average-temperature-during-the-day feature
-- [ ] Comparison build using Claude Code, for learning purposes
+The weather agent works end to end, but it's still just one agent answering to a wake word that isn't even its final name yet. Next up: training a custom "Hey Lisa" wake word, adding a second agent so there's actually something to route between, and building the routing logic itself so the system can tell what you're asking for and hand it to the right agent. Further out, there's a desktop GUI planned instead of the terminal, and eventually a senior orchestrator agent sitting on top of all the specialized ones.
 
-## Built By
+## Built by
 
-Robby & Ani — learning AI development hands-on, one bug at a time. Follow along for updates as this grows into a full multi-agent system.
+Robby & Ani — learning AI development hands-on, one bug at a time. Follow along as this grows from one agent into a full system.
