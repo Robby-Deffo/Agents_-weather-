@@ -1,4 +1,4 @@
-# Agents (Weather)
+# Agents (Weather,...)
 
 A fully local, voice-activated AI agent system starting with weather, growing over time. No cloud AI subscriptions, no ongoing API costs. Say "Hey Jarvis," ask for a city, and get a natural-sounding spoken weather report generated entirely on your own machine.
 
